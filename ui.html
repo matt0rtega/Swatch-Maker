@@ -1,23 +1,16 @@
-<h2>Color Manager</h2>
-<p>Number of tints<input id="tints" value="1"></p>
-<p>Count: <input id="count" value="1"></p>
-<div class="vstack" style="gap: 24px">
-<div class="hstack" style="justify-content: space-between;">
-  <button id="cancel"  >Cancel</button>
-  <div class="hstack">
-    <button id="test" class="primary">Test Create</button>
-    <button id="test-update" class="primary">Test Update</button>
-    <button id="update-colors" class="primary">Update Colors</button>
-    <button id="create" class="primary">Create Page</button>
-  </div>
-</div>
+<h2>Swatch Maker</h2>
+<div class="vstack" style="gap: 8px">
 <div class="vstack" style="gap: 8px !important"></div>
+<p>Select mode:</p>
+<select name="mode" id="mode">
+  <option value="dark">Dark</option>
+  <option value="light">Light</option>
+</select>
   <button id="generate-styles" class="primary">Generate Styles from Tokens</button>
   <button id="create-pages" class="primary">Create Pages from Styles</button>
   <button id="remove" class="delete">Remove all</button>
 </div>
 </div>
-
 
 <style>
   body {
@@ -76,35 +69,17 @@
 </style>
 
 <script>
-  document.getElementById('create').onclick = () => {
-    parent.postMessage({ pluginMessage: { type: 'create-rectangles' } }, '*')
-  }
-
-  document.getElementById('update-colors').onclick = () => {
-    parent.postMessage({ pluginMessage: { type: 'update-colors' } }, '*')
-  }
-
-  document.getElementById('test').onclick = () => {
-    parent.postMessage({ pluginMessage: { type: 'test' } }, '*')
-  }
-
-  document.getElementById('test-update').onclick = () => {
-    parent.postMessage({ pluginMessage: { type: 'test-update' } }, '*')
-  }
-
-  document.getElementById('remove').onclick = () => {
-    parent.postMessage({ pluginMessage: { type: 'remove' } }, '*')
-  }
-
   document.getElementById('generate-styles').onclick = () => {
-    parent.postMessage({ pluginMessage: { type: 'generate-styles' } }, '*')
+    var modeSelector = document.getElementById("mode");
+    var mode = modeSelector.value;
+    parent.postMessage({ pluginMessage: { type: 'generate-styles', mode } }, '*')
   }
 
   document.getElementById('create-pages').onclick = () => {
     parent.postMessage({ pluginMessage: { type: 'create-pages' } }, '*')
   }
 
-  document.getElementById('cancel').onclick = () => {
-    parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+  document.getElementById('remove').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'remove' } }, '*')
   }
 </script>
