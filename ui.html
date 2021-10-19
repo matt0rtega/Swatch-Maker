@@ -1,0 +1,110 @@
+<h2>Color Manager</h2>
+<p>Number of tints<input id="tints" value="1"></p>
+<p>Count: <input id="count" value="1"></p>
+<div class="vstack" style="gap: 24px">
+<div class="hstack" style="justify-content: space-between;">
+  <button id="cancel"  >Cancel</button>
+  <div class="hstack">
+    <button id="test" class="primary">Test Create</button>
+    <button id="test-update" class="primary">Test Update</button>
+    <button id="update-colors" class="primary">Update Colors</button>
+    <button id="create" class="primary">Create Page</button>
+  </div>
+</div>
+<div class="vstack" style="gap: 8px !important"></div>
+  <button id="generate-styles" class="primary">Generate Styles from Tokens</button>
+  <button id="create-pages" class="primary">Create Pages from Styles</button>
+  <button id="remove" class="delete">Remove all</button>
+</div>
+</div>
+
+
+<style>
+  body {
+    font-family: "Inter", sans-serif;
+    font-weight: 100;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  h2 {
+    font-family: sans-serif;
+    font-weight: 100;
+  }
+
+  .hstack {
+    display: flex;
+    flex-direction: row;
+    gap: 4px;
+  }
+
+  .vstack {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    outline: none;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 32px;
+  }
+
+  .primary {
+    background-color: #0892FF;
+    color: white;
+    transition: all ease-in-out 90ms;
+  }
+
+
+  .delete {
+    background-color: red;
+    color: white;
+    transition: all ease-in-out 90ms;
+  }
+
+  .primary:hover {
+    background-color: #1799FF;
+  }
+
+
+</style>
+
+<script>
+  document.getElementById('create').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'create-rectangles' } }, '*')
+  }
+
+  document.getElementById('update-colors').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'update-colors' } }, '*')
+  }
+
+  document.getElementById('test').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'test' } }, '*')
+  }
+
+  document.getElementById('test-update').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'test-update' } }, '*')
+  }
+
+  document.getElementById('remove').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'remove' } }, '*')
+  }
+
+  document.getElementById('generate-styles').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'generate-styles' } }, '*')
+  }
+
+  document.getElementById('create-pages').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'create-pages' } }, '*')
+  }
+
+  document.getElementById('cancel').onclick = () => {
+    parent.postMessage({ pluginMessage: { type: 'cancel' } }, '*')
+  }
+</script>
